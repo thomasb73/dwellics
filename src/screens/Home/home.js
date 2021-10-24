@@ -3,15 +3,24 @@ import ReactDOM from 'react-dom';
 import logo from './logo.svg'
 import banner from './Group 64@2x.png'
 import text from './text.png'
+import { useMediaQuery } from 'react-responsive'
 //import './Home.css',
 
 function Home() {
+  const isDesktopOrLaptop = useMediaQuery({ minDeviceWidth: 1224 },
+    { deviceWidth: 1600 }
+    )
+  const isBigScreen = useMediaQuery({ query: '(min-width: 1824px)' })
+  const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1224px)' })
+  const isPortrait = useMediaQuery({ query: '(orientation: portrait)' })
+  const isRetina = useMediaQuery({ query: '(min-resolution: 2dppx)' })
   return (
-    <div>
-        
+    
+    <div style = {{ height: '100%', width: '100%' }}>
+    
        <nav id="navbar">
         <div className="nav-wrapper">
-            <img src={logo} style = {{ height: '10%', width: '10%', float: 'left', marginLeft: '3%', marginTop: '2%' }} alt="logo" className="photo" />
+            <img src={logo} style = {{ height: '8%', width: '8%', float: 'left', marginLeft: '3%', marginTop: '2%' }} alt="logo" className="photo" />
         </div>
     </nav>
     
@@ -24,7 +33,7 @@ function Home() {
           <p style = {{ font: 'font: normal normal normal 14px/15px Sitka Display', color: '#115946'}}> more to find the perfect place for you to live.</p> */}
           <img src = {text} />
          </div>
-        <img src={banner} style = {{ height: '38%', width: '38%', float: 'right', marginTop: '10%', marginRight: '5%',  display: 'inline-block'  }} alt="logo" className="photo" />
+        <img src={banner} style = {{ height: '30%', width: '30%', float: 'right', marginTop: '10%', marginRight: '5%',  display: 'inline-block'  }} alt="logo" className="photo" />
     </div>
     <div style = {{ marginLeft: '13%' }}> 
         <button style = {{ display: 'inline-block',
@@ -36,7 +45,7 @@ function Home() {
           borderColor: '#707070',
           borderWidth: '1px',
           padding: '20px',
-          width: '170px',
+          width: 'auto',
           transition: 'all 0.5s',
           cursor: 'pointer',
           font: 'normal normal bold 15px/20px Sitka Display',
@@ -51,14 +60,15 @@ function Home() {
           borderColor: '#707070',
           borderWidth: '1px',
           padding: '20px',
-          width: '170px',
+          width: 'auto',
           transition: 'all 0.5s',
           cursor: 'pointer',
           font: 'normal normal bold 15px/20px Sitka Display',
           letterSpacing: '0px',
           margin: '5px', boxShadow: '10px 5px' }}>Generate My List</button>
-    </div>
-    </div>
+    
+    </div></div>
+    
   );
 }
 

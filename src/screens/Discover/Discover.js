@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import banner from './list_item.png'
+import { useMediaQuery } from 'react-responsive'
 //import './Home.css',
 const responsive = {
   superLargeDesktop: {
@@ -17,7 +18,7 @@ const responsive = {
   },
   tablet: {
     breakpoint: { max: 1024, min: 464 },
-    items: 2
+    items: 1
   },
   mobile: {
     breakpoint: { max: 464, min: 0 },
@@ -26,8 +27,15 @@ const responsive = {
 };
 
 function Discover() {
+  const isDesktopOrLaptop = useMediaQuery({
+    query: '(min-width: 1224px)'
+  })
+  const isBigScreen = useMediaQuery({ query: '(min-width: 1824px)' })
+  const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1224px)' })
+  const isPortrait = useMediaQuery({ query: '(orientation: portrait)' })
+  const isRetina = useMediaQuery({ query: '(min-resolution: 2dppx)' })
   return (
-    <div style = {{ backgroundColor: '#d4e1de', height: '100%' }}>
+    <div style = {{ backgroundColor: '#d4e1de', height: '100%', width: '100%' }}>
       <br></br>
       <nav id="navbar">
         <p style = {{ font: 'normal normal bold 40px/58px Sitka Display', color: '#115946', 
@@ -36,7 +44,7 @@ function Discover() {
         color: '#115946', textAlign: 'center' }}>We research and compare over 50,000 cities to help you find the best places to move</p>
       </nav>
       <div style = {{ marginLeft: '5%', marginTop: '5%'}}>
-      <Carousel responsive={responsive}>
+      {isDesktopOrLaptop && <Carousel responsive={responsive}>
         <div><img src = {banner}/></div>
         <div><img src = {banner}/></div>
         <div><img src = {banner}/></div>
@@ -47,7 +55,22 @@ function Discover() {
         <div><img src = {banner}/></div>
         <div><img src = {banner}/></div>
         <div><img src = {banner}/></div>
-      </Carousel>
+      </Carousel>}
+      {isRetina && <Carousel responsive={responsive}>
+        <div><img src = {banner}/></div>
+        <div><img src = {banner}/></div>
+        <div><img src = {banner}/></div>
+        <div><img src = {banner}/></div>
+        <div><img src = {banner}/></div>
+        <div><img src = {banner}/></div>
+        <div><img src = {banner}/></div>
+        <div><img src = {banner}/></div>
+        <div><img src = {banner}/></div>
+        <div><img src = {banner}/></div>
+      </Carousel>}
+      {isTabletOrMobile && <Carousel responsive={responsive}>
+        <div><img src = {banner}/></div>
+      </Carousel>}
       </div>
       <br></br><br></br><br></br><br></br><br></br>
     </div>
